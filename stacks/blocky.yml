@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  blocky:
+    image: docker.io/spx01/blocky:latest
+    network: slirp4netns:port_handler=slirp4netns
+    container_name: blocky
+    env_file:
+    - env/basic.env
+    ports:
+    - "8155:8155"
+    - "8155:8155/udp"
+    volumes:
+    - /etc/localtime:/etc/localtime:ro
+    - /var/lib/podman/compose/config/blocky/config.yml:/app/config.yml:ro

@@ -1,0 +1,8 @@
+# Misc
+*.swp
+*.tmp
+*.tmp.yml
+*.tmp.yaml
+
+env/*
+!.githold

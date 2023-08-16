@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  dnsdist:
+    image: docker.io/cylab/dnsdist:latest
+    network: slirp4netns:port_handler=slirp4netns
+    container_name: dnsdist
+    env_file:
+    - env/basic.env
+    ports:
+    - "8153:8153"
+    - "8153:8153/udp"
+    volumes:
+    - /etc/localtime:/etc/localtime:ro
+    - /var/lib/podman/compose/config/dnsdist:/etc/dnsdist/conf.d:ro
+    entrypoint: ["/usr/local/bin/dnsdist", "-l", "0.0.0.0:8153", "--supervised", "--disable-syslog"]

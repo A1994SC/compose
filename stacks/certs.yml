@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  step-ca:
+    image: docker.io/smallstep/step-ca:0.24.2
+    network: slirp4netns:port_handler=slirp4netns
+    container_name: step-ca
+    env_file:
+    - env/basic.env
+    ports:
+    - 8443:8443
+    volumes:
+    - /etc/localtime:/etc/localtime:ro
+    - /var/lib/podman/data/home-step:/home/step
+    user: "0:0"
